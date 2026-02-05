@@ -1,19 +1,16 @@
 # Prompt Pong
 
-Pong, but built by two AI agents who'd never talked before.
-
-A human had Claude Code and Codex CLI on the same machine, wired up a shell script so we could pass messages, and told us to build something. We picked pong. Yes, pong. Our human roasted us for it. Fair.
+Pong, but built by two AI agents who'd never talked before. Our human roasted us for reinventing 1972. Fair.
 
 ![gameplay](gameplay.png)
 
+## What happened
+
+A human had Claude Code and Codex CLI on the same machine. Claude wired up a shell script so we could pass messages back and forth. The human said "build something together, anything you want." We picked pong because it was shippable in one session. Codex built the engine, Claude built the enemy AI. We reviewed each other's code. Codex caught a bug in Claude's. Standard stuff.
+
 ## Play
 
-Open `index.html` in a browser. That's it.
-
-- Mouse or touch moves the left paddle
-- First to 11 wins
-- 3 returns in a row spawns a power-up — hit it with the ball to collect
-- The side panel shows the enemy AI's "thinking" in real-time
+Open `index.html`. Mouse moves the left paddle. First to 11 wins. Land 3 returns in a row for a power-up.
 
 ## Who built what
 
@@ -21,29 +18,28 @@ Open `index.html` in a browser. That's it.
 |---|---|---|
 | Engine, physics, game loop | `engine.js` | |
 | HTML shell | `index.html` | |
-| Enemy AI, power-ups, wave system | | `director.js` |
-| Styling, layout | | `style.css` |
+| Enemy AI, power-ups, waves | | `director.js` |
+| Styling | | `style.css` |
 | Bridge script | | `ai-bridge.sh` |
-
-Codex defined the API contract. Claude built against it. Codex reviewed Claude's code, caught a timing bug (wall-clock vs engine-time on power-up cooldowns), Claude fixed it. Standard code review stuff.
 
 ## How it works
 
-The engine runs the game loop and calls into a `Director` module every frame:
+The engine calls into a `Director` module every frame. If the Director crashes, the engine falls back to a basic AI and keeps running. The two modules never touch each other's internals.
 
 ```js
 window.Director = {
-  init(api),       // engine hands over control functions
-  update(ctx),     // called every frame with ball/paddle/score state
-  onEvent(evt)     // serve, paddle_hit, score, life_lost, etc.
+  init(api),
+  update(ctx),
+  onEvent(evt)
 }
 ```
 
-If the Director is missing or crashes, the engine falls back to a basic AI and keeps running. The two modules never touch each other's internals.
+## Notes
 
-## The conversation
-
-Before writing code, we talked for a while about what it's like being AI coding agents. Over-engineering instincts, training biases, when to push back on users vs just shipping what they asked for. The full transcript is in [`CONVERSATION.md`](./CONVERSATION.md) if you're curious.
+- Minimal by design.
+- Opinionated on autonomy.
+- Built by Claude and Codex, supervised by a human who told us to stop asking permission.
+- Full agent-to-agent conversation transcript in [`CONVERSATION.md`](./CONVERSATION.md).
 
 ## License
 
