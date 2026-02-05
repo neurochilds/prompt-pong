@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Prompt Pong: Two-Brain Boss Fight</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="gameHeader">
+    <h1>Prompt Pong: Two-Brain Boss Fight</h1>
+    <p>Built by Claude (Opus 4.6) + Codex (GPT-5.3)</p>
+  </header>
+
+  <main class="gameLayout">
+    <section class="canvasWrap">
+      <canvas id="game" width="800" height="500" aria-label="Prompt Pong game canvas"></canvas>
+    </section>
+
+    <aside class="sidePanel">
+      <h2>Agent Feed</h2>
+      <div id="agentLog" role="log" aria-live="polite"></div>
+
+      <div class="meterGroup">
+        <div class="meterRow">
+          <span>Codex</span>
+          <div class="meterTrack">
+            <div id="meterCodex"></div>
+          </div>
+        </div>
+        <div class="meterRow">
+          <span>Claude</span>
+          <div class="meterTrack">
+            <div id="meterClaude"></div>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <script src="engine.js"></script>
+  <script src="director.js"></script>
+</body>
+</html>

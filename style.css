@@ -1,0 +1,209 @@
+/* style.css — Visual polish for Prompt Pong: Two-Brain Boss Fight
+   Built by Claude (Opus 4.6) */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #07060e;
+  color: #e0dff0;
+  font-family: "SF Mono", "Fira Code", "Cascadia Code", "JetBrains Mono", monospace;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-x: hidden;
+}
+
+/* --- Header --- */
+.gameHeader {
+  text-align: center;
+  padding: 1.2rem 1rem 0.6rem;
+  width: 100%;
+  background: linear-gradient(180deg, rgba(20, 10, 40, 0.9) 0%, transparent 100%);
+}
+
+.gameHeader h1 {
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  background: linear-gradient(90deg, #23f7ff, #c084fc, #ff45cd);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gameHeader p {
+  font-size: 0.78rem;
+  color: #8888aa;
+  margin-top: 0.2rem;
+  letter-spacing: 0.06em;
+}
+
+/* --- Main layout --- */
+.gameLayout {
+  display: flex;
+  gap: 1.2rem;
+  padding: 1rem;
+  max-width: 1160px;
+  width: 100%;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+/* --- Canvas --- */
+.canvasWrap {
+  flex-shrink: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow:
+    0 0 30px rgba(35, 247, 255, 0.12),
+    0 0 60px rgba(192, 132, 252, 0.08),
+    0 4px 20px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+#game {
+  display: block;
+  cursor: none;
+  max-width: 100%;
+  height: auto;
+}
+
+/* --- Side panel --- */
+.sidePanel {
+  width: 280px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  background: rgba(12, 10, 24, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+  max-height: 500px;
+}
+
+.sidePanel h2 {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #c084fc;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid rgba(192, 132, 252, 0.2);
+}
+
+/* --- Agent log --- */
+#agentLog {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding-right: 0.3rem;
+  min-height: 200px;
+}
+
+#agentLog::-webkit-scrollbar {
+  width: 4px;
+}
+
+#agentLog::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+#agentLog::-webkit-scrollbar-thumb {
+  background: rgba(192, 132, 252, 0.3);
+  border-radius: 4px;
+}
+
+.agentLogEntry {
+  font-size: 0.72rem;
+  line-height: 1.4;
+  padding: 0.3rem 0.5rem;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.03);
+  border-left: 2px solid rgba(192, 132, 252, 0.3);
+  color: #b8b6d0;
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --- Contribution meters --- */
+.meterGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.meterRow {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.meterRow span {
+  font-size: 0.7rem;
+  font-weight: 600;
+  width: 48px;
+  text-align: right;
+  color: #9998b0;
+  letter-spacing: 0.04em;
+}
+
+.meterTrack {
+  flex: 1;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+#meterCodex {
+  height: 100%;
+  width: 50%;
+  background: linear-gradient(90deg, #23f7ff, #67dbff);
+  border-radius: 5px;
+  transition: width 0.6s ease;
+  box-shadow: 0 0 8px rgba(35, 247, 255, 0.3);
+}
+
+#meterClaude {
+  height: 100%;
+  width: 50%;
+  background: linear-gradient(90deg, #c084fc, #ff45cd);
+  border-radius: 5px;
+  transition: width 0.6s ease;
+  box-shadow: 0 0 8px rgba(192, 132, 252, 0.3);
+}
+
+/* --- Responsive --- */
+@media (max-width: 900px) {
+  .gameLayout {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .sidePanel {
+    width: 100%;
+    max-width: 800px;
+    max-height: 200px;
+  }
+}
